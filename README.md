@@ -26,9 +26,9 @@ const obj = {
   }
 };
 
-const objS = parser.Serialize(obj);
+const objS = parser.serialize(obj);
 typeof objS === 'string';
-parser.Unserialize(objS).say() === 'hi Bob';
+parser.unserialize(objS).say() === 'hi Bob';
 ```
 
 Serialize an object with a sub object:
@@ -43,7 +43,7 @@ const objWithSubObj = {
   }
 };
 
-const objWithSubObjS = parser.Serialize(objWithSubObj);
+const objWithSubObjS = parser.serialize(objWithSubObj);
 typeof objWithSubObjS === 'string';
-parser.Unserialize(objWithSubObjS).obj.say() === 'hi Jeff';
+parser.unserialize(objWithSubObjS).obj.say() === 'hi Jeff';
 ```
