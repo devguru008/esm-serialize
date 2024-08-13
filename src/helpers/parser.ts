@@ -13,7 +13,7 @@ export class Parser {
     return currentObj;
   }
 
-  public Serialize(obj: any, 
+  public serialize(obj: any, 
     ignoreNativeFunc = false, 
     outputObj: any = {}, 
     cache: any = {}, 
@@ -39,7 +39,7 @@ export class Parser {
             }
           }
           if (!found) {
-            outputObj[key] = this.Serialize(obj[key], ignoreNativeFunc, outputObj[key], cache, path + this.KEYPATHSEPARATOR + key);
+            outputObj[key] = this.serialize(obj[key], ignoreNativeFunc, outputObj[key], cache, path + this.KEYPATHSEPARATOR + key);
           }
         } else if(typeof obj[key] === 'function') {
           let funcStr = obj[key].toString();
@@ -60,7 +60,7 @@ export class Parser {
     return (path === '$') ? JSON.stringify(outputObj) : outputObj;
   }
 
-  public Unserialize(obj: any, originObj: any = {}) {
+  public unserialize(obj: any, originObj: any = {}) {
     let isIndex;
     if (typeof obj === 'string') {
       obj = JSON.parse(obj);
@@ -73,7 +73,7 @@ export class Parser {
     for(key in obj) {
       if(Object.prototype.hasOwnProperty.call(obj, key)) {
         if(typeof obj[key] === 'object') {
-          obj[key] = this.Unserialize(obj[key], originObj);
+          obj[key] = this.unserialize(obj[key], originObj);
         } else if(typeof obj[key] === 'string') {
           if(obj[key].indexOf(this.FUNCFLAG) === 0) {
             obj[key] = eval('(' + obj[key].substring(this.FUNCFLAG.length) + ')');

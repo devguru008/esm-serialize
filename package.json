@@ -1,6 +1,6 @@
 {
   "name": "esm-serialize",
-  "version": "0.2.3",
+  "version": "0.3.1",
   "description": "TypeScript JSON Parser",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

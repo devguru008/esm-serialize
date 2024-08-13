@@ -14,7 +14,7 @@ describe('Parser#Serialize(obj, ignoreNativeCode)', () => {
   });
 
   test('should return a string', () => {
-    expect(typeof parser.Serialize(obj)).toBe('string');
+    expect(typeof parser.serialize(obj)).toBe('string');
   });
 });
 
@@ -32,7 +32,7 @@ describe('Parser#Unserialize(obj)', () => {
   });
 
   test('should return an object', () => {
-    const objSer = parser.Unserialize(parser.Serialize(obj));
+    const objSer = parser.unserialize(parser.serialize(obj));
     expect(typeof objSer).toBe('object');
   });
 });
