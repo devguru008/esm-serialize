@@ -1,13 +1,38 @@
-import uuid from '../index';
+import parser from '../index';
 
-describe('valid UUID', () => {
-  let VALID_UUID_REGEX: RegExp;
+describe('Parser#Serialize(obj, ignoreNativeCode)', () => {
+  let obj: any;
 
   beforeAll(() => {
-    VALID_UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    obj = {
+      name: 'Bob',
+      say: function() {
+        return 'hi ' + this.name;
+      },
+      nl: null
+    };
   });
 
-  test('should match a valid UUID', () => {
-    expect(VALID_UUID_REGEX.test(uuid.v4())).toBeTruthy();
+  test('should return a string', () => {
+    expect(typeof parser.Serialize(obj)).toBe('string');
+  });
+});
+
+describe('Parser#Unserialize(obj)', () => {
+  let obj: any;
+
+  beforeAll(() => {
+    obj = {
+      name: 'Bob',
+      say: function() {
+        return 'hi ' + this.name;
+      },
+      nl: null
+    };
+  });
+
+  test('should return an object', () => {
+    const objSer = parser.Unserialize(parser.Serialize(obj));
+    expect(typeof objSer).toBe('object');
   });
 });

@@ -1,4 +1,4 @@
-export { Uuid } from './helpers/uuid';
-import uuid from './helpers/uuid';
+export { Parser } from './helpers/parser';
+import parser from './helpers/parser';
 
-export default uuid;
+export default parser;
