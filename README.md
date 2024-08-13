@@ -1,4 +1,4 @@
-# node-serialize
+# esm-serialize
 
 Serialize a object including it's function into a JSON with Typescript.
 
